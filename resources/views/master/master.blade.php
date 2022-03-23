@@ -64,6 +64,7 @@
                     <li class="nav-item"><a href="{{ route('customer.index') }}" class="nav-link">Customer</a></li>
                     <li class="nav-item"><a href="{{ route('item.index') }}" class="nav-link">Item</a></li>
                     <li class="nav-item"><a href="{{ route('order.index') }}" class="nav-link">Order</a></li>
+                    <li class="nav-item"><a href="{{ route('order.laporan') }}" class="nav-link">Laporan Order</a></li>
 
                 </ul>
             </div>
