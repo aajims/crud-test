@@ -83,7 +83,6 @@ class OrderController extends Controller
                 };
                 DB::table('order_tmp')->delete();
                 
-                // return response()->json(['success' => 'Customer saved successfully.']);
             }
         }
         return response()->json(['success' => 'Order saved successfully.']);
@@ -93,5 +92,69 @@ class OrderController extends Controller
     {
         Order::find($id)->delete();
         return response()->json(['success' => 'Order deleted successfully.']);
+    }
+
+    public function laporan()
+    {
+        $title = 'Laporan Order';
+        $lap = DB::table('order as O')
+            ->leftjoin('customer as C', 'O.customer_id', '=', 'C.code')
+            ->leftjoin('order_item as I', 'O.no', '=', 'I.order')
+            ->GET();
+        return view('laporan', compact('title', 'lap'));
+    }
+
+    public function lapCustomer(Request $request)
+    {
+        $title = 'Laporan Customer';
+        $laporan = DB::table('order as O')
+            ->leftjoin('customer as C', 'O.customer_id', '=', 'C.code')
+            ->leftjoin('order_item as I', 'O.no', '=', 'I.order')
+            ->GET();
+        $cust = Customer::All();
+        
+        return view('laporan_customer', compact('title', 'laporan', 'cust'));
+    }
+
+    public function filter(Request $request)
+    {
+        $title = 'Laporan Customer';
+        $tanggal = date('Y-m-d',strtotime($request->tanggal));
+        $lapor = DB::table('order as O')
+            ->leftjoin('customer as C', 'O.customer_id', '=', 'C.code')
+            ->leftjoin('order_item as I', 'O.no', '=', 'I.order');
+        $cust = Customer::All();
+        if (!empty($request->customer) && empty($tanggal == null)) {
+            $lapor->where('C.code', $request->customer);
+        }
+        if (!empty($tanggal) && empty($request->customer)) {
+            $lapor->where('O.date', $tanggal);
+        }
+        $laporan = $lapor->GET();
+        return view('laporan_customer', compact('title', 'laporan', 'cust'));
+    }
+
+    public function lapItem()
+    {
+        $title = 'Laporan Item';
+        $laporan = DB::table('item as O')
+            ->leftjoin('order_item as I', 'O.code', '=', 'I.item')
+            ->GET();
+        $item = Item::All();
+        
+        return view('laporan_item', compact('title', 'laporan', 'item'));
+    }
+
+    public function filterItem(Request $request)
+    {
+        $title = 'Laporan Item';
+        $lapor = DB::table('item as O')
+            ->leftjoin('order_item as I', 'O.code', '=', 'I.item');
+        $item = Item::All();
+        if (!empty($request->item)) {
+            $lapor->where('O.code', $request->item);
+        }
+        $laporan = $lapor->GET();
+        return view('laporan_item', compact('title', 'laporan', 'item'));
     }
 }
