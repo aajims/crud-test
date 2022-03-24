@@ -1,7 +1,8 @@
-@extends('master.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
+    <div class="bodi">
     <h3>Users</h3>
     <a class="btn btn-success" href="javascript:void(0)" id="createNewUser"> Create New User</a>
     <table class="table table-bordered data-table">
@@ -57,6 +58,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 @endsection

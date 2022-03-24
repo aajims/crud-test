@@ -1,7 +1,8 @@
-@extends('master.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
+    <div class="bodi">
     <h3> {{ $title }}</h3>
     <div class="pilihan" style="margin-bottom: 15px">
         <form role="form" method="get" action="{{ url('order/laporan/tampilkan') }}">
@@ -15,7 +16,7 @@
         <button type="submit" class="btn btn-primary">Tampilkan</button>
         </form>
         <form role="form" method="get" action="{{ url('order/laporan/customer') }}">
-            <button type="submit" class="btn btn-default">Clear</button>
+            <button type="submit" class="btn btn-clear">Clear</button>
         </form>
     </div>
     
@@ -43,5 +44,6 @@
         </tbody>
         @endforeach
     </table>
+    </div>
 </div>
 @endsection

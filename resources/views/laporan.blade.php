@@ -1,7 +1,8 @@
-@extends('master.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
+    <div class="bodi">
     <h3> {{ $title }}</h3>
     
     <table class="table table-bordered data-table">
@@ -34,5 +35,6 @@
         </tbody>
         @endforeach
     </table>
+    </div>
 </div>
 @endsection

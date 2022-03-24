@@ -1,21 +1,23 @@
-@extends('master.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <h3>Customers</h3>
-    <a class="btn btn-success" href="javascript:void(0)" id="createNewUser" style="margin-bottom: 15px"> Create New Customer</a>
-    <table class="table table-bordered data-table">
-        <thead>
-            <tr>
-                <th width="30px">No</th>
-                <th>Code</th>
-                <th>Name</th>
-                <th width="300px">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="bodi">
+        <h3>Customers</h3>
+        <a class="btn btn-success" href="javascript:void(0)" id="createNewUser" style="margin-bottom: 15px"> Create New Customer</a>
+        <table class="table table-bordered data-table">
+            <thead>
+                <tr>
+                    <th width="30px">No</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th width="300px">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="modal fade" id="ajaxModel" aria-hidden="true">

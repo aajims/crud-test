@@ -1,10 +1,11 @@
-@extends('master.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
+    <div class="bodi">
     <h3>Orders</h3>
     <div class="col-md-10">
-        <a class="btn btn-success" href="javascript:void(0)" id="createNewItem"> Create New Item</a>
+        <a class="btn btn-success" href="javascript:void(0)" id="createNewItem" style="margin-bottom: 15px"> Create New Item</a>
         <table class="table table-bordered data-table">
             <thead>
                 <tr>
@@ -129,6 +130,7 @@
                  </div>
              </form>
         </div>
+    </div>
     </div>
 </div>
 

@@ -25,7 +25,7 @@ class OrderController extends Controller
 
                     $btn = '<a href="/order/edit/' . $row->no . '" class="edit btn btn-primary btn-sm editUser">Edit</a>';
 
-                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteCust">Delete</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteOrder">Delete</a>';
 
                     return $btn;
                 })
@@ -89,7 +89,7 @@ class OrderController extends Controller
         return redirect('/order');
     }
 
-    public function destroy()
+    public function destroy($id)
     {
         Order::find($id)->delete();
         return response()->json(['success' => 'Order deleted successfully.']);

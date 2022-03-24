@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::resource('users', 'UsersController');
 Route::resource('customer', 'CustomerController');
 Route::resource('item', 'ItemController');
@@ -24,6 +28,7 @@ Route::get('/order', 'OrderController@index')->name('order.index');
 Route::get('/order/add', 'OrderController@add')->name('order.add');
 Route::get('/order/edit/{no}', 'OrderController@edit')->name('order.edit');
 Route::post('/order/store', 'OrderController@store')->name('order.store');
+Route::delete('/order/{id}', 'OrderController@destroy')->name('order.destroy');
 Route::get('/order/laporan', 'OrderController@laporan')->name('order.laporan');
 Route::get('/order/laporan/customer', 'OrderController@lapCustomer')->name('order.customer');
 Route::get('/order/laporan/tampilkan', 'OrderController@filter')->name('order.filter');

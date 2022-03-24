@@ -1,7 +1,8 @@
-@extends('master.master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
+    <div class="bodi">
     <h3>Orders</h3>
     <div class="tombol" style="margin-bottom: 15px">
         <a class="btn btn-success" href="{{ url('order/add') }}" > Create New Order</a>
@@ -79,6 +80,7 @@
         </div>
     </div>
 </div>
+</div>
 
 @endsection
 @section('js')
@@ -106,14 +108,14 @@
       });
       
 
-      $('body').on('click', '.deleteCust', function () {
+      $('body').on('click', '.deleteOrder', function () {
 
           var user_id = $(this).data("id");
           $confirm = confirm("Are You sure want to delete !");
           if($confirm == true ){
               $.ajax({
                   type: "DELETE",
-                  url: "{{ route('order.store') }}"+'/'+user_id,
+                  url: "{{ url('order') }}"+'/'+user_id,
                   success: function (data) {
                       table.draw();
                       alert(Object.values(data));
