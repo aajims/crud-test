@@ -14,7 +14,8 @@ class OrderItemController extends Controller
     {
         $head = "<title>Order Item</title>";
         if ($request->ajax()) {
-            $data = OrderTmp::latest()->get();
+            $data = OrderItem::where('order', $request->id)
+            ->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

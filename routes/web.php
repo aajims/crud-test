@@ -22,7 +22,7 @@ Route::resource('orderItem', 'OrderItemController');
 Route::resource('orderTmp', 'OrderTmpController');
 Route::get('/order', 'OrderController@index')->name('order.index');
 Route::get('/order/add', 'OrderController@add')->name('order.add');
-Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
+Route::get('/order/edit/{no}', 'OrderController@edit')->name('order.edit');
 Route::post('/order/store', 'OrderController@store')->name('order.store');
 Route::get('/order/laporan', 'OrderController@laporan')->name('order.laporan');
 Route::get('/order/laporan/customer', 'OrderController@lapCustomer')->name('order.customer');

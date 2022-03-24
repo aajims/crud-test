@@ -9,7 +9,7 @@ use App\Customer;
 use App\OrderTmp;
 use DataTables;
 use DB;
-use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -23,7 +23,7 @@ class OrderController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="/order/edit/' . $row->id . '" class="edit btn btn-primary btn-sm editUser">Edit</a>';
+                    $btn = '<a href="/order/edit/' . $row->no . '" class="edit btn btn-primary btn-sm editUser">Edit</a>';
 
                     $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteCust">Delete</a>';
 
@@ -44,9 +44,9 @@ class OrderController extends Controller
         return view('add_order', compact('data', 'item', 'customer'));
     }
 
-    public function edit($id)
+    public function edit($no)
     {
-        $order = Order::find($id);
+        $order = Order::Where('no', $no)->first();
         $item = Item::All();
         $customer = Customer::All();
         return view('edit_order', compact('order','item','customer'));;
@@ -85,7 +85,8 @@ class OrderController extends Controller
                 
             }
         }
-        return response()->json(['success' => 'Order saved successfully.']);
+        Alert::success('Success', 'Success Message');
+        return redirect('/order');
     }
 
     public function destroy()
